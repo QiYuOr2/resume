@@ -14,7 +14,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import Certificate from './components/Certificate.vue';
-import ChangeData from './components/changeData.vue';
+import ChangeData from './components/ChangeData.vue';
 import Education from './components/Education.vue';
 import Header from './components/Header.vue';
 import Other from './components/Other.vue';
