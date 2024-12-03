@@ -1,0 +1,1 @@
+export const namespace = '@qiyuor2/resume'

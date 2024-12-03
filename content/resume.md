@@ -1,6 +1,6 @@
 # 徐梦宇
 
-电话：15981923557 :Divider{} 邮箱：qiyuor2@gmail.com :divider{} GitHub：https://github.com/qiyuor2
+电话：15981923557 :divider{} 邮箱：qiyuor2@gmail.com :divider{} GitHub：https://github.com/qiyuor2
 
 求职意向：前端工程师 :divider{} 工作经验：2年
 
@@ -39,7 +39,7 @@
 - 推动常用的脚手架及运维方升级 Node20，并且落地部署前端项目
 - 承担命令行工具及相关脚手架的答疑和维护，解决 / 修复了多个业务方提出的问题
 
-### **AI造娃**
+### AI造娃
 
 **项目简介**
 
