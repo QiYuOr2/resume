@@ -2,13 +2,12 @@
 import { get } from '@vueuse/core';
 
 const props = defineProps<{
-  value: string | Ref<string>
+  value: Ref<string>
 }>()
 
 const previewIns = ref<HTMLElement>()
 
-
-watch([previewIns, () => props.value], () => {
+watch([() => previewIns.value, props.value], () => {
   if (previewIns.value) {
     previewIns.value.innerHTML = get(props.value)
   }

@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="app">
+    <Sidebar />
     <NuxtPage />
   </div>
 </template>
@@ -8,3 +9,9 @@
 import '~/styles/index.scss'
 
 </script>
+
+<style lang="scss" scoped>
+.app {
+  display: flex;
+}
+</style>

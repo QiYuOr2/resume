@@ -14,6 +14,7 @@ async function setupEditor() {
 
     editor.value = monaco.editor.create(container.value, {
       wordWrap: 'on',
+      language: 'markdown',
       value: editorStore.text.value
     });
 

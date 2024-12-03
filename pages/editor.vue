@@ -1,16 +1,20 @@
 <script lang="ts" setup>
 const editorStore = useEditor();
 const isHeightFirst = ref(false);
-const editorFlexDirection = computed(() => isHeightFirst.value ? 'column' : 'row')
-
 
 onMounted(() => {
   isHeightFirst.value = window.screen.height > window.screen.width;
+
+  addEventListener('resize', () => {
+    isHeightFirst.value = window.screen.height > window.screen.width;
+  })
 });
+
+
 </script>
 
 <template>
-  <div class="editor-page">
+  <div :class="['editor-page', isHeightFirst ? 'editor-page--col' : 'editor-page--row']">
     <div class="preview resume">
       <MDPreview :value="editorStore.rendererText" />
     </div>
@@ -20,10 +24,11 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@use "~/styles/resume.scss";
+
 .editor-page {
   display: flex;
-  flex-direction: v-bind('editorFlexDirection');
   gap: 1px;
   height: 100vh;
   width: 100%;
@@ -34,11 +39,27 @@ onMounted(() => {
   .editor {
     flex: 1;
     background-color: #fff;
-    max-height: 50%;
   }
 
   .preview {
     overflow-y: scroll;
+  }
+
+  &--col {
+    flex-direction: column;
+
+    .preview,
+    .editor {
+      max-height: 50%;
+    }
+  }
+
+  &--row {
+    flex-direction: row;
+    .preview,
+    .editor {
+      max-width: 50%;
+    }
   }
 }
 </style>
