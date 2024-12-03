@@ -10,8 +10,14 @@ import '~/styles/index.scss'
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .app {
   display: flex;
+}
+
+@media print {
+  .app .sidebar {
+    display: none;
+  }
 }
 </style>

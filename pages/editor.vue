@@ -56,9 +56,28 @@ onMounted(() => {
 
   &--row {
     flex-direction: row;
+
     .preview,
     .editor {
       max-width: 50%;
+    }
+  }
+}
+
+@media print {
+  .editor-page {
+    height: unset;
+
+    & .preview {
+      width: unset;
+      height: unset;
+      max-width: unset;
+      max-height: unset;
+      overflow-y: unset;
+    }
+
+    .editor {
+      display: none;
     }
   }
 }

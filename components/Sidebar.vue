@@ -8,11 +8,13 @@ const routes = [
     icon: 'file-icons:yaml-alt4',
     type: 'yaml'
   }
-]
+];
 
-const currentRoute = useRoute()
+const currentRoute = useRoute();
 
-console.log(currentRoute)
+function print() {
+  window.print();
+}
 </script>
 
 <template>
@@ -21,6 +23,11 @@ console.log(currentRoute)
       :to="`/editor?type=${route.type}`">
       <Icon :name="route.icon" size="24" />
     </NuxtLink>
+
+    <div class="sidebar-print" @click="print">
+      <Icon name="file-icons:default" />
+      <span>打印</span>
+    </div>
   </div>
 </template>
 
@@ -39,19 +46,46 @@ console.log(currentRoute)
     width: 100%;
     padding: 20px 0;
     cursor: pointer;
+    transition: all 0.2s;
 
     &.active {
       .iconify {
         color: rgb(5, 123, 48);
+        transition: all 0.2s;
       }
     }
 
     &:hover {
+      transition: all 0.2s;
       background-color: rgba(0, 0, 0, 0.025);
 
       .iconify {
+        transition: all 0.2s;
         color: rgba(5, 123, 48, 0.421);
       }
+    }
+  }
+
+  &-print {
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: 20px;
+    padding: 8px 6px 4px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    background-color: rgb(5, 123, 48);
+    transition: all 0.2s;
+
+    & span {
+      color: #fff;
+    }
+
+    &:hover {
+      background-color: rgba(5, 123, 48, 0.421);
     }
   }
 }
