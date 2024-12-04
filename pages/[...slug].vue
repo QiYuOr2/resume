@@ -1,9 +1,6 @@
 <template>
-  <div class="resume">
+  <div>
     <ContentDoc />
   </div>
 </template>
 
-<style lang="scss">
-@use '~/styles/resume.scss'
-</style>

@@ -15,5 +15,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="yml-preview"></div>
+  <div class="yml-preview">TODO</div>
 </template>
