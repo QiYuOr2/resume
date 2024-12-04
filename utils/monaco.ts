@@ -4,11 +4,11 @@ export async function fetchDefault(url: string) {
 }
 
 export async function fetchDefaultMarkdown() {
-  return await fetchDefault("/resume.md");
+  return await fetchDefault("/resume/resume.md");
 }
 
 export async function fetchDefaultYaml() {
-  return await fetchDefault("/resume.yml");
+  return await fetchDefault("/resume/resume.yml");
 }
 
 export async function createMonaco() {
