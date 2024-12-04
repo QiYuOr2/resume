@@ -1,25 +1,37 @@
 <script lang="ts" setup>
+import { EditorType } from '~/types/editor';
+
 const editorStore = useEditor();
 const isHeightFirst = ref(false);
 
-onMounted(() => {
+function checkHeightAndWidth() {
   isHeightFirst.value = window.screen.height > window.screen.width;
+}
 
-  addEventListener('resize', () => {
-    isHeightFirst.value = window.screen.height > window.screen.width;
-  })
+onMounted(() => {
+  checkHeightAndWidth();
+
+  addEventListener('resize', checkHeightAndWidth);
 });
 
+onUnmounted(() => {
+  removeEventListener('resize', checkHeightAndWidth);
+});
 
+const currentRoute = useRoute();
+watch(() => currentRoute.query.type, (value) => {
+  editorStore.setDefault(value as EditorType)
+})
 </script>
 
 <template>
   <div :class="['editor-page', isHeightFirst ? 'editor-page--col' : 'editor-page--row']">
     <div class="preview resume">
-      <MDPreview :value="editorStore.rendererText" />
+      <MDPreview v-if="EditorType.MARKDOWN === currentRoute.query.type" :text="editorStore.rendererText" />
+      <YMLPreview v-else :text="editorStore.text" />
     </div>
     <div class="editor">
-      <MonacoEditor />
+      <MonacoEditor :type="currentRoute.query.type as EditorType" />
     </div>
   </div>
 </template>

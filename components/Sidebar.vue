@@ -1,12 +1,14 @@
 <script lang="ts" setup>
+import { EditorType } from '~/types/editor';
+
 const routes = [
   {
     icon: 'file-icons:rmarkdown',
-    type: 'md',
+    type: EditorType.MARKDOWN
   },
   {
     icon: 'file-icons:yaml-alt4',
-    type: 'yaml'
+    type: EditorType.YAML
   }
 ];
 

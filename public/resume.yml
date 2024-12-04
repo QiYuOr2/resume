@@ -1,0 +1,28 @@
+basic:
+  name: 高松灯
+  desc:
+    -
+      label: 电话
+      value: 12389128371892
+    -
+      label: 邮箱
+      value: 123@gmail.com
+    -
+      label: Github
+      value: https://github.com/qiyuor2
+    -
+      label: 求职意向
+      value: 前端工程师
+    -
+      label: 工作经验
+      value: 2年
+
+sections:
+  -
+    title: 工作经历
+
+  -
+    title: 项目经验
+  
+  -
+    title: 教育经历

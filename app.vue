@@ -8,6 +8,9 @@
 <script setup lang="ts">
 import '~/styles/index.scss'
 
+useHead({
+  title: '简历编辑器'
+})
 </script>
 
 <style lang="scss">

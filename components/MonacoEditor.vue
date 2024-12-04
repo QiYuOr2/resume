@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import type * as e from 'monaco-editor';
+import { EditorType } from '~/types/editor';
 import { createMonaco } from '~/utils/monaco';
+
+const props = defineProps<{
+  type: EditorType
+}>()
 
 const container = ref<HTMLElement>();
 
@@ -11,23 +16,27 @@ async function setupEditor() {
   const { monaco } = await createMonaco();
 
   if (container.value) {
-
     editor.value = monaco.editor.create(container.value, {
       wordWrap: 'on',
-      language: 'markdown',
       value: editorStore.text.value
     });
-
 
     globalThis.addEventListener('resize', () => {
       editor.value?.layout()
     })
 
-    editorStore.setEditor(editor.value)
+    editorStore.setEditor(editor.value, {
+      [EditorType.MARKDOWN]: (value: string) => monaco.editor.createModel(value, 'markdown'),
+      [EditorType.YAML]: (value: string) => monaco.editor.createModel(value, 'yaml')
+    })
+
+    if (!editorStore.text.value) {
+      await editorStore.setDefault(props.type)
+    }
 
     editor.value!.onDidChangeModelContent(() => {
       if (editor.value) {
-        editorStore.setValue(editor.value.getValue());
+        editorStore.setValue(props.type, editor.value.getValue());
       }
     })
   }

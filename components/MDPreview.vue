@@ -2,14 +2,14 @@
 import { get } from '@vueuse/core';
 
 const props = defineProps<{
-  value: Ref<string>
+  text: Ref<string>
 }>()
 
 const previewIns = ref<HTMLElement>()
 
-watch([() => previewIns.value, props.value], () => {
+watch([() => previewIns.value, props.text], () => {
   if (previewIns.value) {
-    previewIns.value.innerHTML = get(props.value)
+    previewIns.value.innerHTML = get(props.text)
   }
 }, { immediate: true })
 </script>
