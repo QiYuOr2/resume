@@ -51,7 +51,7 @@ jobs:
             exit 1
           fi
       - name: Setup PNPM
-        uses: pnpm/actions-setup@v2
+        uses: pnpm/action-setup@v2
         with:
           version: 8.14.1
       - name: Setup Node
