@@ -27,11 +27,11 @@ watch(() => currentRoute.query.type, (value) => {
 <template>
   <div :class="['editor-page', isHeightFirst ? 'editor-page--col' : 'editor-page--row']">
     <div class="preview resume">
-      <MDPreview v-if="EditorType.MARKDOWN === currentRoute.query.type" :text="editorStore.rendererText" />
-      <YMLPreview v-else :text="editorStore.text" />
+      <MDPreview v-if="EditorType.MARKDOWN === currentRoute.query.type" :text="editorStore.rendererText"></MDPreview>
+      <YMLPreview v-else :text="editorStore.text"></YMLPreview>
     </div>
     <div class="editor">
-      <MonacoEditor :type="currentRoute.query.type as EditorType" />
+      <MonacoEditor :type="(currentRoute.query.type as EditorType)"></MonacoEditor>
     </div>
   </div>
 </template>

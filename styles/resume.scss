@@ -75,19 +75,29 @@ body {
     margin-left: auto;
   }
 
-  p:has(em) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  p {
+    &:has(em) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  p:has(strong) {
-    color: var(--text-color-other);
-    margin: 4px 0;
-  }
+    &:has(strong) {
+      color: var(--text-color-other);
+      margin: 4px 0;
+    }
 
-  p:has(strong) strong {
-    color: var(--text-color);
+    &:has(strong) strong {
+      color: var(--text-color);
+    }
+
+    code {
+      border: 1px solid #000;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: Consolas,Monaco,SFMono-Regular,Ubuntu Mono,Menlo,monospace;
+      font-size: 0.9rem;
+    }
   }
 
   ul {
