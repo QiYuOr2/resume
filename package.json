@@ -17,11 +17,13 @@
     "micromark": "^4.0.1",
     "monaco-editor": "^0.52.0",
     "nuxt": "^3.14.159",
+    "pdf-lib": "^1.17.1",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "@iconify-json/file-icons": "^1.2.0",
+    "@iconify-json/fluent": "^1.2.13",
     "@types/js-yaml": "^4.0.9",
     "sass": "^1.81.1"
   }

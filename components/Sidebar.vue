@@ -3,13 +3,19 @@ import { EditorType } from '~/types/editor';
 
 const routes = [
   {
-    icon: 'file-icons:rmarkdown',
-    type: EditorType.MARKDOWN
+    icon: 'fluent:document-page-bottom-left-24-filled',
+    type: EditorType.MARKDOWN,
+    editor: true,
   },
   {
-    icon: 'file-icons:yaml-alt4',
-    type: EditorType.YAML
+    icon: 'fluent:document-pdf-24-filled',
+    type: EditorType.PDF
   }
+  // {
+  //   icon: 'fluent:document-yml-20-filled',
+  //   type: EditorType.YAML
+  //   editor: true,
+  // }
 ];
 
 const currentRoute = useRoute();
@@ -17,13 +23,20 @@ const currentRoute = useRoute();
 function print() {
   window.print();
 }
+
+function checkActive(routeType: EditorType) {
+  if (currentRoute.name === 'editor') {
+    return currentRoute.query.type === routeType;
+  }
+  return currentRoute.name === routeType;
+}
 </script>
 
 <template>
   <div class="sidebar">
-    <NuxtLink v-for="route in routes" :class="['sidebar-icon', { active: currentRoute.query.type === route.type }]"
-      :to="`/editor?type=${route.type}`">
-      <Icon :name="route.icon" size="24" />
+    <NuxtLink v-for="route in routes" :class="['sidebar-icon', { active: checkActive(route.type) }]" :key="route.type"
+      :to="route.editor ? `/editor?type=${route.type}` : route.type">
+      <Icon :name="route.icon" size="32" />
     </NuxtLink>
 
     <div class="sidebar-print" @click="print">
@@ -46,7 +59,10 @@ function print() {
 
   &-icon {
     width: 100%;
-    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
     cursor: pointer;
     transition: all 0.2s;
 
