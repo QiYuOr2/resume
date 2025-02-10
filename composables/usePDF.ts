@@ -2,7 +2,7 @@ import { PDFDocument } from "pdf-lib";
 
 export function usePDF() {
   const metaData = ref();
-  const pdfDoc = ref();
+  const pdfDoc = ref<PDFDocument>();
 
   function load(file: File) {
     const reader = new FileReader();
@@ -16,6 +16,8 @@ export function usePDF() {
   }
 
   function readMetaData() {
+    if (!pdfDoc.value) return;
+
     metaData.value = {
       title: { label: "标题", value: pdfDoc.value.getTitle(), enableEdit: true },
       creator: { label: "创建者", value: pdfDoc.value.getCreator() },
@@ -27,22 +29,30 @@ export function usePDF() {
     };
   }
 
+  function checkValueAndSet<T>(setFunc: (value: T) => void, value: T) {
+    if (value) {
+      setFunc(value);
+    }
+  }
+
   function updateMetaData() {
-    pdfDoc.value.setTitle(metaData.value.title.value);
-    pdfDoc.value.setAuthor(metaData.value.author.value);
-    pdfDoc.value.setKeywords(metaData.value.keywords.value.replaceAll('，', ',').split(","));
-    pdfDoc.value.setSubject(metaData.value.subject.value);
+    if (!pdfDoc.value) return;
+
+    checkValueAndSet((value) => pdfDoc.value!.setTitle(value), metaData.value.title.value);
+    checkValueAndSet((value) => pdfDoc.value!.setAuthor(value), metaData.value.author.value);
+    checkValueAndSet((value) => pdfDoc.value!.setKeywords(value), metaData.value.keywords.value?.replaceAll?.("，", ",")?.split?.(","));
+    checkValueAndSet((value) => pdfDoc.value!.setSubject(value), metaData.value.subject.value);
   }
 
   async function download(filename: string) {
     updateMetaData();
 
-    const pdfBytes = await pdfDoc.value.save();
+    const pdfBytes = await pdfDoc.value!.save();
     const blob = new Blob([pdfBytes], { type: "application/pdf" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = filename
+    a.download = filename;
     a.click();
   }
 
