@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { PDFDocument } from 'pdf-lib'
 import { useDropZone, useFileDialog } from '@vueuse/core'
 
 useHead({
@@ -65,9 +64,11 @@ function loadPDF(file?: File) {
 
 <style lang="scss">
 .pdf {
+  width: 100%;
   box-sizing: border-box;
   height: 100vh;
   padding: 14px;
+  overflow-y: auto;
 
   .upload-area {
     width: 600px;
@@ -87,6 +88,8 @@ function loadPDF(file?: File) {
   }
 
   .files {
+    box-sizing: border-box;
+    width: 600px;
     margin: 12px 0;
     padding: 12px;
     border-radius: 6px;
@@ -105,6 +108,8 @@ function loadPDF(file?: File) {
   }
 
   .metadata {
+    box-sizing: border-box;
+    width: 600px;
     padding: 14px;
     border: 1.4px solid rgba(23, 54, 34, 0.795);
     border-radius: 8px;

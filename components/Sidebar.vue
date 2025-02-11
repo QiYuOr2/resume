@@ -30,6 +30,9 @@ function checkActive(routeType: EditorType) {
   }
   return currentRoute.name === routeType;
 }
+
+
+const isEditor = computed(() => currentRoute.name === 'editor' || currentRoute.path.includes('editor'));
 </script>
 
 <template>
@@ -39,7 +42,7 @@ function checkActive(routeType: EditorType) {
       <Icon :name="route.icon" size="32" />
     </NuxtLink>
 
-    <div class="sidebar-print" @click="print">
+    <div v-if="isEditor" class="sidebar__print" @click="print">
       <Icon name="file-icons:default" />
       <span>打印</span>
     </div>
@@ -84,12 +87,12 @@ function checkActive(routeType: EditorType) {
     }
   }
 
-  &-print {
+  &__print {
     cursor: pointer;
     margin-top: auto;
     margin-bottom: 20px;
-    padding: 8px 6px 4px;
-    border-radius: 2px;
+    padding: 8px 8px 4px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,6 +100,7 @@ function checkActive(routeType: EditorType) {
     gap: 4px;
     background-color: rgb(5, 123, 48);
     transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     & span {
       color: #fff;
